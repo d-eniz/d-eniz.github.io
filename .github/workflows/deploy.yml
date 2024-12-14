@@ -17,11 +17,17 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
 
+      - name: Clear previous build
+        run: rm -rf ./dist
+
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
 
       - name: Build project
         run: npm run build
+
+      - name: List files in dist
+        run: ls -la ./dist
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v3
@@ -33,7 +39,7 @@ jobs:
     name: Deploy
     needs: build
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    if: ${{ github.ref_name == 'main' }}
 
     steps:
       - name: Download artifact
@@ -42,8 +48,12 @@ jobs:
           name: production-files
           path: ./dist
 
+      - name: List files in dist
+        run: ls -la ./dist
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+          force_orphan: true
