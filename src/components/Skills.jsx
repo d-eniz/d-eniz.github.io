@@ -2,6 +2,8 @@ const skills = [
   "Python",
   "TensorFlow",
   "PyTorch",
+  "sklearn",
+  "skimage",
   "MATLAB",
   "React",
   "Node.js",
