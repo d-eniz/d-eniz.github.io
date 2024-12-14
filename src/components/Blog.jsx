@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PopupWindow from "./PopupWindow";
 
 // Function to calculate read time based on word count
@@ -9,54 +9,21 @@ const calculateReadTime = (content) => {
   return `${minutes} min read`;
 };
 
-const blogPosts = [
-  {
-    id: 1,
-    title: "My First Blog Post",
-    date: "2023-06-01",
-    content: `
-# Welcome to my blog!
-
-This is my first blog post. I'm excited to share my thoughts and experiences with you.
-
-## What I'll be writing about
-
-- Web development
-- New technologies
-- Personal projects
-- Coding tips and tricks
-
-Stay tuned for more content!
-    `,
-  },
-  {
-    id: 2,
-    title: "Learning React Hooks",
-    date: "2023-06-15",
-    content: `
-# Diving into React Hooks
-
-React Hooks have revolutionized the way we write React components. In this post, I'll share my experience learning and using hooks.
-
-## useState
-
-The \`useState\` hook is great for managing local state in functional components. Here's a simple example:
-
-\`\`\`jsx
-const [count, setCount] = useState(0);
-\`\`\`
-
-## useEffect
-
-\`useEffect\` is used for side effects in components. It's like componentDidMount, componentDidUpdate, and componentWillUnmount combined.
-
-More to come as I explore other hooks!
-    `,
-  },
-];
-
 const Blog = () => {
+  const [blogPosts, setBlogPosts] = useState([]);
   const [expandedPost, setExpandedPost] = useState(null);
+
+  // Fetch blog posts data from JSON (assuming it's stored locally)
+  useEffect(() => {
+    fetch("/posts.json")
+      .then((response) => response.json())
+      .then((data) => {
+        // Sort posts by date in descending order
+        const sortedPosts = data.sort((a, b) => new Date(b.date) - new Date(a.date));
+        setBlogPosts(sortedPosts);
+      })
+      .catch((error) => console.error("Error fetching posts:", error));
+  }, []);
 
   return (
     <section id="blog" className="bg-gray-800 py-16">
