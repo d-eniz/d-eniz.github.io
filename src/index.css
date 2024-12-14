@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.prose h1 {
+    @apply text-3xl font-bold text-gray-100;
+  }
+
+  .prose h2 {
+    @apply text-2xl font-semibold text-gray-100;
+  }
+
+  .prose code {
+    @apply bg-gray-800 text-yellow-400 p-1 rounded-sm font-mono;
+  }
+
+  .prose pre code {
+    @apply bg-gray-900 text-gray-200 p-4 rounded-lg font-mono;
+  }
+
+  .prose pre {
+    @apply overflow-x-auto p-4 bg-gray-800 rounded-lg;
+  }
