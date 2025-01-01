@@ -1,9 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import PopupWindow from "./PopupWindow";
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);
   const [expandedProject, setExpandedProject] = useState(null);
+  const [maxHeight, setMaxHeight] = useState(0);
+  const projectRefs = useRef([]);
 
   useEffect(() => {
     fetch('/projects.json')
@@ -12,6 +14,13 @@ const Projects = () => {
       .catch(error => console.error('Error fetching projects:', error));
   }, []);
 
+  useEffect(() => {
+    if (projectRefs.current.length) {
+      const heights = projectRefs.current.map(ref => ref?.offsetHeight || 0);
+      setMaxHeight(Math.max(...heights));
+    }
+  }, [projects]);
+
   return (
     <section id="projects" className="bg-gray-900 py-16 relative">
       <div className="container mx-auto px-4">
@@ -19,22 +28,27 @@ const Projects = () => {
           My Projects
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project) => (
-            <div key={project.id}>
+          {projects.map((project, index) => (
+            <div
+              key={project.id}
+              ref={(el) => (projectRefs.current[index] = el)}
+              className="flex flex-col h-full"
+            >
               <div
-                className="bg-gray-800 rounded-lg shadow-md overflow-hidden transition duration-300 ease-in-out cursor-pointer border-2 border-transparent hover:border-blue-500 aspect-w-16 aspect-h-9"
+                className="bg-gray-800 rounded-lg shadow-md overflow-hidden transition duration-300 ease-in-out cursor-pointer border-2 border-transparent hover:border-blue-500 flex-grow"
                 onClick={() =>
                   setExpandedProject(
                     expandedProject === project.id ? null : project.id
                   )
                 }
+                style={{ height: maxHeight ? `${maxHeight}px` : 'auto' }}
               >
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-48 object-cover"
                 />
-                <div className="p-6">
+                <div className="p-6 flex flex-col justify-between flex-grow">
                   <h3 className="text-xl font-semibold mb-2 text-gray-100">
                     {project.title}
                   </h3>
