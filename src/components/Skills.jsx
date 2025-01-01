@@ -1,15 +1,13 @@
 const skills = [
   "Python",
-  "TensorFlow",
   "PyTorch",
   "sklearn",
-  "skimage",
   "MATLAB",
   "React",
-  "Node.js",
   "Flask",
   "JavaScript",
   "Git",
+  "C++"
 ];
 
 const Skills = () => {
