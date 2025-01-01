@@ -36,7 +36,7 @@ const PopupWindow = ({ isOpen, onClose, title, image, content }) => {
           <img
             src={image}
             alt={title}
-            className="w-full h-64 object-cover rounded-md mb-6"
+            className="w-full h-auto object-contain rounded-md mb-6"
           />
         )}
         <div className="prose prose-invert max-w-none">
