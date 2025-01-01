@@ -1,5 +1,5 @@
 import { useState } from "react";
-import profileImage from "../assets/deniz.jpg";
+import profileImage from "../assets/deniz.png";
 
 const Hero = () => {
   const [showMore, setShowMore] = useState(false);
@@ -16,8 +16,7 @@ const Hero = () => {
           Hi, I'm Deniz
         </h1>
         <p className="text-xl text-gray-300 mb-16">
-          A biomedical engineering student exploring innovative projects in data
-          science, machine learning, and software engineering.
+        I specialise in software engineering with a focus on full-stack development, data science, and machine learning.
         </p>
         <button
           onClick={() => setShowMore(!showMore)}
@@ -32,13 +31,11 @@ const Hero = () => {
         >
           <div className="bg-gray-700 p-6 rounded-lg">
             <p className="text-gray-300">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
+            I am currently pursuing a master’s degree in biomedical engineering at UCL, where I’m combining my technical expertise with a passion for improving healthcare. My focus lies in the integration of software engineering, full-stack development, data science, and machine learning to create impactful solutions.
+            <br></br><br></br>
+            With a solid foundation in software development, I enjoy working on projects that challenge my problem-solving skills and push the boundaries of what technology can achieve in both engineering and healthcare. I’m particularly interested in leveraging data-driven insights to optimize processes and improve outcomes in medical and healthcare systems.
+            <br></br><br></br>
+            In my spare time, I enjoy exploring new technologies, contributing to open-source projects, and staying up to date with the latest advancements in AI and healthcare innovation. I’m always open to collaborating with like-minded individuals and organizations to bring forward-thinking solutions to life.
             </p>
           </div>
         </div>
