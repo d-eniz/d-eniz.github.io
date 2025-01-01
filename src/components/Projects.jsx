@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import ReactMarkdown from "react-markdown";
 import PopupWindow from "./PopupWindow";
 
 const Projects = () => {
