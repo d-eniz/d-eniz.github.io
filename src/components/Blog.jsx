@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PopupWindow from "./PopupWindow";
 
-// Function to calculate read time based on word count
 const calculateReadTime = (content) => {
   const words = content.split(/\s+/).length;
   const wordsPerMinute = 200; // average reading speed
@@ -13,12 +12,10 @@ const Blog = () => {
   const [blogPosts, setBlogPosts] = useState([]);
   const [expandedPost, setExpandedPost] = useState(null);
 
-  // Fetch blog posts data from JSON (assuming it's stored locally)
   useEffect(() => {
     fetch("/posts.json")
       .then((response) => response.json())
       .then((data) => {
-        // Sort posts by date in descending order
         const sortedPosts = data.sort((a, b) => new Date(b.date) - new Date(a.date));
         setBlogPosts(sortedPosts);
       })
