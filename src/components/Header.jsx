@@ -4,7 +4,7 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="bg-gray-800 shadow-md">
+    <header className="bg-gray-800 shadow-md sticky top-0 z-50 w-full">
       <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
         <a href="#" className="text-xl font-bold text-gray-100">
           Deniz Terzioglu
