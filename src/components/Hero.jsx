@@ -34,8 +34,6 @@ const Hero = () => {
             I am currently pursuing a master’s degree in biomedical engineering at UCL, where I’m combining my technical expertise with a passion for improving healthcare. My focus lies in the integration of software engineering, full-stack development, data science, and machine learning to create impactful solutions.
             <br></br><br></br>
             With a solid foundation in software development, I enjoy working on projects that challenge my problem-solving skills and push the boundaries of what technology can achieve in both engineering and healthcare. I’m particularly interested in leveraging data-driven insights to optimize processes and improve outcomes in medical and healthcare systems.
-            <br></br><br></br>
-            In my spare time, I enjoy exploring new technologies, contributing to open-source projects, and staying up to date with the latest advancements in AI and healthcare innovation. I’m always open to collaborating with like-minded individuals and organizations to bring forward-thinking solutions to life.
             </p>
           </div>
         </div>
