@@ -30,7 +30,7 @@ const PopupWindow = ({ isOpen, onClose, title, image, content }) => {
     >
       <div
         ref={popupRef}
-        className="bg-gray-800 rounded-lg shadow-xl p-8 w-full max-w-screen-lg max-h-[90vh] overflow-y-auto transform transition-all duration-500 ease-out opacity-0 scale-75 origin-center"
+        className="bg-gray-800 rounded-lg shadow-xl p-8 w-full max-w-screen-lg max-h-[90vh] overflow-y-auto transform transition-all duration-500 ease-out opacity-0 scale-75 origin-center relative"
         onClick={(e) => e.stopPropagation()}
       >
         <h3 className="text-2xl font-semibold mb-4 text-gray-100">{title}</h3>
@@ -68,13 +68,13 @@ const PopupWindow = ({ isOpen, onClose, title, image, content }) => {
             {content}
           </ReactMarkdown>
         </div>
-        <button
-          onClick={onClose}
-          className="mt-6 bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition duration-300"
-        >
-          Close
-        </button>
       </div>
+      <button
+        onClick={onClose}
+        className="absolute top-2 right-2 bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition duration-300"
+      >
+        Close Window
+      </button>
     </div>
   );
 };
