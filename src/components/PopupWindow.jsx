@@ -1,6 +1,8 @@
 import { useRef, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
-import remarkGfm from 'remark-gfm';
+import remarkGfm from "remark-gfm";
+import rehypePrism from "rehype-prism-plus";
+import "prismjs/themes/prism-tomorrow.css"; // Add your preferred theme
 
 const PopupWindow = ({ isOpen, onClose, title, image, content }) => {
   const popupRef = useRef(null);
@@ -42,6 +44,26 @@ const PopupWindow = ({ isOpen, onClose, title, image, content }) => {
         <div className="prose prose-invert max-w-none">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]} // Enable GitHub Flavored Markdown
+            rehypePlugins={[rehypePrism]} // Enable syntax highlighting
+            components={{
+              code({ node, inline, className, children, ...props }) {
+                if (inline) {
+                  return (
+                    <code
+                      className="text-yellow-400 bg-gray-700 px-1 py-0.5 rounded-sm inline"
+                      {...props}
+                    >
+                      {children}
+                    </code>
+                  );
+                }
+                return (
+                  <pre className={`language-${className}`}>
+                    <code className="block">{children}</code>
+                  </pre>
+                );
+              },
+            }}
           >
             {content}
           </ReactMarkdown>

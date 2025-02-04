@@ -38,6 +38,7 @@ function App() {
         <Hero />
         <Skills />
         <Projects />
+        <Blog />
         <Contact />
       </main>
       <Footer />

@@ -2,10 +2,12 @@ const skills = [
   "Python",
   "PyTorch",
   "sklearn",
-  "MATLAB",
-  "React",
   "Flask",
+  "MATLAB",
   "JavaScript",
+  "HTML",
+  "CSS",
+  "React",
   "Git",
   "C++"
 ];
