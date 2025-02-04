@@ -48,11 +48,6 @@ const Blog = () => {
       <PopupWindow
         isOpen={expandedPost !== null}
         onClose={() => setExpandedPost(null)}
-        title={
-          expandedPost
-            ? blogPosts.find((post) => post.id === expandedPost).title
-            : ""
-        }
         content={
           expandedPost
             ? blogPosts.find((post) => post.id === expandedPost).content
