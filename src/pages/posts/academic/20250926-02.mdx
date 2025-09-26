@@ -1,0 +1,38 @@
+---
+title: Age Distribution Forecasting and Visualization Web Application
+layout: ../../../layouts/MainLayout.astro
+description: A web application for forecasting and visualising UK age distribution trends through interactive 3D maps and analytical tools.
+---
+
+This project was a collaborative effort to build a web application designed to explore age distributions across the UK using both historical and projected data. The application enables users to interactively visualize demographic trends and gain insights into the population's evolution, using forecasting techniques to project future changes.
+
+I contributed to the project by designing the database structure and implementing unit testing to ensure the application’s reliability. I worked closely with the team to ensure both the backend and frontend were seamlessly integrated and user-friendly.
+
+image1
+Technical Approach
+
+The backend of the application was built using Python, with data processing and forecasting powered by libraries like numpy, pandas, and statsmodels. We used an Exponential Smoothing model from statsmodels to generate population projections based on historical trends, which incorporates both seasonality and underlying trends. I was responsible for designing the database schema to store and manage both historical and forecasted demographic data efficiently, ensuring that the data was well-organized by geographical levels (Country, ITL, LAD, Region) and was consistent across time periods.
+
+image2
+
+On the frontend, I contributed to creating visualizations using matplotlib and Three.js, which enabled users to explore demographic data through an interactive map. I also collaborated on integrating Flask for the web framework, which allowed us to serve dynamic content and data-driven pages. The visualizations were designed to be responsive and easy to navigate.
+
+I was also responsible for implementing unit tests using pytest, ensuring the accuracy of both backend data processing and frontend interactions. Additionally, I contributed to the security of the application by implementing token-based authentication via PyJWT, which restricted access to authorized users.
+Results and Future Directions
+
+The web application successfully integrates demographic forecasting with interactive visualizations, offering users an intuitive tool to analyze UK age distribution trends. It allows users to filter data by geographical region and time period to allow the understanding of demographic shifts and projections.
+
+In the future, we plan to extend the application by incorporating additional forecasting models through machine learning, integrating real-time data feeds, and enhancing the UI for better accessibility and user engagement.
+Skills and Impact
+
+This project allowed me to apply and develop my expertise in database design, data science, and full stack web development. I employed good practices in software development through the use of unit testing, database normalisation, and token-based authentication. Furthermore, this project demonstrated the benefits of team collaboration through Agile software development practices. It highlighted my ability to work in a team to develop a full-stack solution while ensuring the application was both reliable and user-friendly.
+Credit
+
+This project was a collaborative effort involving contributions from:
+
+    Ariadna Bazaga Pozas
+    Kajan Subakannan
+    Omer Yurttutmus
+    Me (Deniz Terzioglu)
+
+Explore the full project and codebase on GitHub.

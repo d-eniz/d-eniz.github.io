@@ -1,16 +1,48 @@
 ---
+import MainLayout from "../layouts/MainLayout.astro";
+import { Content as About } from "./about.mdx"
+import ProjectSection from "../components/ProjectSection.astro";
 
+const posts_academic = Object.values(import.meta.glob("./posts/academic/*.mdx", {eager: true}));
+const posts_personal = Object.values(import.meta.glob("./posts/personal/*.mdx", {eager: true}));
+
+export type Post = {
+	url: string;
+	frontmatter: {
+		title: string;
+		date: string;
+		description: string;
+		tags: string[];
+	}
+}
 ---
+<MainLayout>
+	<header>
+		<div />
+		<nav>
+			<ul>
+				<a href="/">About</a>
+				<a href="/">Projects</a>
+			</ul>
+		</nav>
+	</header>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+	<About />
+
+	<ProjectSection title="Personal Projects" posts={posts_personal} />
+	<ProjectSection title="Academic Projects" posts={posts_academic} />
+</MainLayout>
+
+
+<style>
+	header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	body {
+		margin: 5% 25%
+	}
+
+</style>
