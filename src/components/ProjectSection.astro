@@ -1,22 +1,21 @@
 ---
-import { Card } from "./ProjectCard.tsx";
+import Card from "./ProjectCard.astro";
 import type { Post } from "../pages/index.astro"
 
-export interface Props {
+export type Props = {
     title: string;
     posts: any[];
 }
 
 const { title, posts } = Astro.props;
-
 ---
 
 <h2>{title}</h2>
 <ul>
     {posts.map((i) => {
-    const post = i as Post;
+        const post = i as Post;
         return (
-            <Card client:load {...post}/>
+            <Card {...post}/>
         );
     })}
 </ul>
