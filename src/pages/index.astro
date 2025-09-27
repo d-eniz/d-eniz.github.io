@@ -1,45 +1,32 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import ProjectSection from "../components/ProjectSection.astro";
+import Typewriter from "astro-typewriter";
+
+import { Image } from 'astro:assets';
+import profile_pic from "../../public/deniz.png"
 
 const posts_academic = Object.values(import.meta.glob("./posts/academic/*.mdx", {eager: true}));
 const posts_personal = Object.values(import.meta.glob("./posts/personal/*.mdx", {eager: true}));
 
-export type Post = {
-	url: string;
-	frontmatter: {
-		title: string;
-		date: string;
-		description: string;
-		tags: string[];
-		image: string;
-	}
-}
 ---
 <MainLayout>
-	<header>
-		<div />
-		<nav>
-			<ul>
-				<a href="/">About</a>
-				<a href="/">Projects</a>
-			</ul>
-		</nav>
-	</header>
 
 	<div class="about">
 		<div class="profile">
-			<img src="deniz.png" alt="Deniz Terzioglu" />
-			<h1>Deniz Terzioglu</h1>
+			<Image src={profile_pic} alt="Deniz Terzioglu" width={150} height={150} />
+			<div>
+				<Typewriter
+					messages={["Hi, I'm Deniz"]}
+					waitWritten={9**9}
+					writeSpeed={150}
+					style="font-weight: bold; font-size: 2em"
+				/>
+				<p>I’m a developer with a background in biomedical engineering who enjoys building tools that make complex workflows simpler. 
+			I work mainly with <strong>TypeScript</strong>, <strong>React</strong>, and <strong>Python</strong>, and I care about writing code that’s <strong>maintainable</strong> and easy for others to build on.</p>
+			</div>
+			
 		</div>
-		<p>
-			I’m a developer with a background in biomedical engineering who enjoys building tools that make complex workflows simpler. 
-			I work mainly with <strong>TypeScript</strong>, <strong>React</strong>, and <strong>Python</strong>, and I care about writing code that’s <strong>maintainable</strong> and easy for others to build on.
-		</p>
-		<p>
-			My interdisciplinary academic background has taught me how to learn quickly and adapt across fields. 
-			I am passionate about solving problems through software and continuously improving my skills to create tools that real people will benefit from.
-		</p>
 	</div>
 
 	<ProjectSection title="Personal Projects" posts={posts_personal} />
@@ -47,14 +34,32 @@ export type Post = {
 </MainLayout>
 
 <style>
-	header {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-	}
-	.profile img {
-		height: 300px;
-		border-radius: 10px;
+	.about {
+		margin: 170px 0 200px 0;
 	}
 
+	.profile {
+		display: flex;
+		align-items: center;
+		gap: 30px;
+		margin: 20px;
+	}
+
+	.profile img {
+		height: 150px;
+		border-radius: 10px;
+		flex-shrink: 0;
+	}
+
+	@media (max-width: 1000px) {
+		.profile {
+			flex-direction: column;
+			text-align: center;
+			gap: 20px;
+		}
+
+		.profile h1 {
+			font-size: 2rem;
+		}
+	}
 </style>
