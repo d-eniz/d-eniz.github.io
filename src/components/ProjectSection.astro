@@ -1,6 +1,6 @@
 ---
 import Card from "./ProjectCard.astro";
-import type { Post } from "../pages/index.astro"
+import type { Post } from "../types";
 
 export type Props = {
     title: string;
@@ -19,3 +19,10 @@ const { title, posts } = Astro.props;
         );
     })}
 </ul>
+
+<style>
+    ul {
+        padding-left: 0;
+        margin-left: 0;
+    }
+</style>
