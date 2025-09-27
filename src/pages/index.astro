@@ -1,6 +1,5 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
-import { Content as About } from "./about.mdx"
 import ProjectSection from "../components/ProjectSection.astro";
 
 const posts_academic = Object.values(import.meta.glob("./posts/academic/*.mdx", {eager: true}));
@@ -13,6 +12,7 @@ export type Post = {
 		date: string;
 		description: string;
 		tags: string[];
+		image: string;
 	}
 }
 ---
@@ -27,12 +27,24 @@ export type Post = {
 		</nav>
 	</header>
 
-	<About />
+	<div class="about">
+		<div class="profile">
+			<img src="deniz.png" alt="Deniz Terzioglu" />
+			<h1>Deniz Terzioglu</h1>
+		</div>
+		<p>
+			I’m a developer with a background in biomedical engineering who enjoys building tools that make complex workflows simpler. 
+			I work mainly with <strong>TypeScript</strong>, <strong>React</strong>, and <strong>Python</strong>, and I care about writing code that’s <strong>maintainable</strong> and easy for others to build on.
+		</p>
+		<p>
+			My interdisciplinary academic background has taught me how to learn quickly and adapt across fields. 
+			I am passionate about solving problems through software and continuously improving my skills to create tools that real people will benefit from.
+		</p>
+	</div>
 
 	<ProjectSection title="Personal Projects" posts={posts_personal} />
 	<ProjectSection title="Academic Projects" posts={posts_academic} />
 </MainLayout>
-
 
 <style>
 	header {
@@ -40,9 +52,9 @@ export type Post = {
 		justify-content: space-between;
 		align-items: center;
 	}
-
-	body {
-		margin: 5% 25%
+	.profile img {
+		height: 300px;
+		border-radius: 10px;
 	}
 
 </style>
