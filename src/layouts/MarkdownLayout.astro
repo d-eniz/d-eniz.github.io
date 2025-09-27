@@ -1,0 +1,9 @@
+---
+import MainLayout from "./MainLayout.astro";
+const props = Astro.props;
+const titleId = props.frontmatter.title?.replace(/[^a-zA-Z0-9]/g, "-").toLowerCase();
+---
+<MainLayout title={props.frontmatter.title}>
+	<h1 transition:name={`title-${titleId}`}>{props.frontmatter.title}</h1>
+	<slot />
+</MainLayout>
