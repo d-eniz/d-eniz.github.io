@@ -1,0 +1,32 @@
+---
+const props = Astro.props;
+---
+
+<div class="card" data-url={props.url}>
+    <h3>{props.frontmatter.title}</h3>
+    <p>{props.frontmatter.description}</p>
+    <p class="tags">{props.frontmatter.tags?.join(", ")}</p>
+</div>
+
+<script>
+    const cards = document.querySelectorAll('.card[data-url]');
+        
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                const url = card.getAttribute('data-url');
+                if (url) {
+                    window.location.href = url;
+                }
+            });
+        });
+</script>
+
+<style>
+    .card{
+        cursor: pointer;
+        padding: 1px 10px;
+        margin: 20px;
+        background-color: white;
+        outline: gainsboro solid 1px;
+    }
+</style>
