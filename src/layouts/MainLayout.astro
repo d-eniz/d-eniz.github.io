@@ -15,11 +15,10 @@ const { title } = Astro.props;
 	</head>
 	<body>
 		<header>
-			<a href="/"><strong>Deniz Terzioglu</strong></a>
+			<a class="un" href="/"><strong>Deniz Terzioglu</strong></a>
 			<nav>
 				<ul>
-					<a href="/">About</a>
-					<a href="/">Projects</a>
+					<a class="un" href="/#projects">Projects</a>
 				</ul>
 			</nav>
 		</header>
@@ -39,7 +38,7 @@ const { title } = Astro.props;
 
 	body {
 		font-family: "Lora", serif;
-		background-color: #fef3eb;
+		background-color: #f6f3f1;
 		color: black;
 		margin: 1% 15%
 	}
@@ -48,6 +47,29 @@ const { title } = Astro.props;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+	}
+
+	a {
+		color: #000000;
+		text-decoration: none;
+		margin-left: 20px;
+		font-size: large;
+		font-weight: bold;
+		transition: 0.7s;
+	}
+
+	.un {
+		transition: 0.7s;
+		border-bottom: 2px solid transparent;
+	}
+
+	.un:hover {
+		transition: 0.2s;
+		border-color: black;
+	}
+
+	html {
+		scroll-behavior: smooth;
 	}
 
 </style>
