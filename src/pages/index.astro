@@ -6,8 +6,8 @@ import Typewriter from "astro-typewriter";
 import { Image } from 'astro:assets';
 import profile_pic from "../../public/deniz.png"
 
-const posts_academic = Object.values(import.meta.glob("./posts/academic/*.mdx", {eager: true}));
-const posts_personal = Object.values(import.meta.glob("./posts/personal/*.mdx", {eager: true}));
+const posts_academic = Object.values(import.meta.glob("./posts/academic/*.md", {eager: true}));
+const posts_personal = Object.values(import.meta.glob("./posts/personal/*.md", {eager: true}));
 
 ---
 <MainLayout>
