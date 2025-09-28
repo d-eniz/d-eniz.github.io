@@ -14,23 +14,28 @@ const posts_personal = Object.values(import.meta.glob("./posts/personal/*.md", {
 
 	<div class="about">
 		<div class="profile">
-			<Image src={profile_pic} alt="Deniz Terzioglu" width={150} height={150} />
+			<Image src={profile_pic} alt="Deniz Terzioglu" width={250} height={250} />
 			<div>
 				<Typewriter
 					messages={["Hi, I'm Deniz"]}
 					waitWritten={9**9}
 					writeSpeed={150}
-					style="font-weight: bold; font-size: 2em"
+					style="font-weight: bold; font-size: 3em"
 				/>
-				<p>I’m a developer with a background in biomedical engineering who enjoys building tools that make complex workflows simpler. 
-			I work mainly with <strong>TypeScript</strong>, <strong>React</strong>, and <strong>Python</strong>, and I care about writing code that’s <strong>maintainable</strong> and easy for others to build on.</p>
+				<p style="font-size: 1.2em">
+					I’m a developer with a background in biomedical engineering who enjoys building tools that make complex workflows simpler. 
+					I work mainly with <strong>TypeScript</strong>, <strong>React</strong>, and <strong>Python</strong>, and I care about writing code that’s <strong>maintainable</strong> and easy for others to build on.
+				</p>
 			</div>
 			
 		</div>
 	</div>
 
-	<ProjectSection title="Personal Projects" posts={posts_personal} />
-	<ProjectSection title="Academic Projects" posts={posts_academic} />
+	<section id="projects">
+		<ProjectSection title="Personal Projects" posts={posts_personal} />
+		<ProjectSection title="Academic Projects" posts={posts_academic} />
+	</section>
+	
 </MainLayout>
 
 <style>
@@ -46,7 +51,6 @@ const posts_personal = Object.values(import.meta.glob("./posts/personal/*.md", {
 	}
 
 	.profile img {
-		height: 150px;
 		border-radius: 10px;
 		flex-shrink: 0;
 	}
