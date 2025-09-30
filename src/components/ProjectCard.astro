@@ -21,31 +21,6 @@ const titleId = props.frontmatter.title?.replace(/[^a-zA-Z0-9]/g, "-").toLowerCa
     
 </div>
 
-<script>
-    import { navigate } from "astro:transitions/client";
-    
-    function attachCardListeners() {
-        const cards = document.querySelectorAll(".card[data-url]");
-        
-        cards.forEach(card => {
-            card.removeEventListener("click", handleCardClick);
-            card.addEventListener("click", handleCardClick);
-        });
-    }
-    
-    function handleCardClick(event: Event) {
-        const target = event.currentTarget as HTMLElement;
-        const url = target.getAttribute("data-url");
-        if (url) {
-            navigate(url);
-        }
-    }
-    
-    attachCardListeners();
-    
-    document.addEventListener("astro:page-load", attachCardListeners);
-</script>
-
 <style>
     @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap");
 
