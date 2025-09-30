@@ -1,9 +1,117 @@
 ---
+import Image from "astro/components/Image.astro";
+
 import MainLayout from "./MainLayout.astro";
 const props = Astro.props;
 const titleId = props.frontmatter.title?.replace(/[^a-zA-Z0-9]/g, "-").toLowerCase();
+
+import "../styles/global.css"
 ---
 <MainLayout title={props.frontmatter.title}>
-	<h1 transition:name={`title-${titleId}`}>{props.frontmatter.title}</h1>
-	<slot />
+	<div class="content">
+		{props.frontmatter.title && ( // if that field exists, render
+			<h1 transition:name={`title-${titleId}`}>{props.frontmatter.title}</h1>
+		)}
+
+		{props.frontmatter.description && (
+			<p transition:name={`desc-${titleId}`}>{props.frontmatter.description}</p>
+		)}
+
+		{props.frontmatter.tags && (
+			<div transition:name={`tags-${titleId}`} class="tags">
+				{props.frontmatter.tags?.map((tag: string) => (
+					<span class="tag">{tag}</span>
+				))}
+			</div>
+		)}
+
+		{props.frontmatter.image && (
+			<Image 
+				class="im" 
+				transition:name={`img-${titleId}`} 
+				src={`/${props.frontmatter.image}`} 
+				alt={props.frontmatter.title} 
+				height={350} 
+				width={600} 
+			/>
+		)}
+
+		<article class="markdown" style="margin-bottom: 30px;">
+			<slot />
+		</article>
+
+		{props.frontmatter.link && (
+			<a class="about-me-button" href=`https://github.com/${props.frontmatter.link}` transition:name="about-me">
+				See project repository ⇛
+			</a>
+		)}
+	</div>
 </MainLayout>
+
+<style>
+	body {
+		margin: 1% 12%;
+	}
+
+	.content {
+		margin: 1% 17%;
+	}
+
+	h1 {
+		font-size: 2.2em;
+		margin-top: 2em;
+	}
+
+	.im {
+		border-radius: 10px;
+		width: 100%;
+		height: auto;
+		max-width: 100%;
+	}
+
+	.tag {
+		font-size: 1em;
+	}
+
+	.markdown :global(h2) {
+		font-size: 1.6rem;
+		margin-top: 1.25rem;
+		margin-bottom: 0.5rem;
+	}
+
+	p,
+	.markdown :global(p),
+	.markdown :global(ul),
+	.markdown :global(ol),
+	.markdown :global(li) {
+		font-size: 1.1rem;
+		line-height: 1.7;
+		margin: 0.8rem 0;
+	}
+
+	.markdown :global(li) {
+		margin: 0;
+	}
+
+	.markdown :global(strong) {
+		font-size: 1.1rem;
+		line-height: 1.7;
+	}
+
+	.markdown :global(a) {
+		text-decoration: underline;
+	}
+
+	@media (max-width: 750px) {
+		.content {
+			margin: 0;
+		}
+
+		.im {
+			width: 100%;
+			height: auto;
+			max-width: 100%;
+		}
+	}
+
+</style>

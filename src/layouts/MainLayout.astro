@@ -2,6 +2,8 @@
 import { ClientRouter } from "astro:transitions";
 
 const { title } = Astro.props;
+
+import "../styles/global.css"
 ---
 
 <html lang="en">
@@ -29,12 +31,11 @@ const { title } = Astro.props;
 				</ul>
 			</nav>
 		</header>
-		
 		<main>
 			<slot />
 		</main>
 
-		<footer>
+		<footer style="margin-top: 50px;">
 			© {new Date().getFullYear()} Deniz Terzioglu
 		</footer>
 	</body>
@@ -74,13 +75,17 @@ const { title } = Astro.props;
 		font-family: "Lora", serif;
 		background-color: #f6f3f1;
 		color: black;
-		margin: 1% 15%
+		margin: 1% 12%;
 	}
 
 	header {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+	}
+
+	footer {
+		text-align: center;
 	}
 
 	a {

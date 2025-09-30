@@ -14,7 +14,7 @@ const posts_personal = Object.values(import.meta.glob("./posts/personal/*.md", {
 
 	<div class="about">
 		<div class="profile">
-			<Image src={profile_pic} alt="Deniz Terzioglu" width={250} height={250} />
+			<Image src={profile_pic} alt="Deniz Terzioglu" width={200} height={200} />
 			<div>
 				<Typewriter
 					messages={["Hi, I'm Deniz"]}
@@ -22,23 +22,30 @@ const posts_personal = Object.values(import.meta.glob("./posts/personal/*.md", {
 					writeSpeed={150}
 					style="font-weight: bold; font-size: 3em"
 				/>
-				<p style="font-size: 1.2em">
-					I’m a developer with a background in biomedical engineering who enjoys building tools that make complex workflows simpler. 
+				<p style="font-size: 1.2em; margin-bottom: 40px">
+					I’m a software engineer with a background in biomedical engineering who enjoys building tools that make complex workflows simpler. 
 					I work mainly with <strong>TypeScript</strong>, <strong>React</strong>, and <strong>Python</strong>, and I care about writing code that’s <strong>maintainable</strong> and easy for others to build on.
 				</p>
+				<a class="about-me-button" href="/about">
+					More about me ⇛
+				</a>	
 			</div>
 			
 		</div>
 	</div>
 
 	<section id="projects">
-		<ProjectSection title="Personal Projects" posts={posts_personal} />
-		<ProjectSection title="Academic Projects" posts={posts_academic} />
+		<ProjectSection title="Current Projects" posts={posts_personal} />
+		<ProjectSection title="Academic Work" posts={posts_academic} />
 	</section>
 	
 </MainLayout>
 
 <style>
+	body {
+		margin: 1% 12%;
+	}
+
 	.about {
 		margin: 170px 0 200px 0;
 	}
@@ -46,8 +53,8 @@ const posts_personal = Object.values(import.meta.glob("./posts/personal/*.md", {
 	.profile {
 		display: flex;
 		align-items: center;
-		gap: 30px;
-		margin: 20px;
+		gap: 60px;
+		margin: 70px;
 	}
 
 	.profile img {
@@ -56,6 +63,10 @@ const posts_personal = Object.values(import.meta.glob("./posts/personal/*.md", {
 	}
 
 	@media (max-width: 1000px) {
+		body {
+			margin: 1% 5%
+		}
+
 		.profile {
 			flex-direction: column;
 			text-align: center;
