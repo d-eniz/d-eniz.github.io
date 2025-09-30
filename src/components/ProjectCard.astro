@@ -3,16 +3,18 @@ import { Image } from 'astro:assets';
 
 const props = Astro.props;
 const titleId = props.frontmatter.title?.replace(/[^a-zA-Z0-9]/g, "-").toLowerCase();
+
+import "../styles/global.css"
 ---
 
 <div class="card" data-url={props.url}>
     <div class="card-image">
-        <Image src={`/${props.frontmatter.image}`} alt={props.frontmatter.title} height={100} width={100}/>
+        <Image transition:name={`img-${titleId}`} src={`/${props.frontmatter.image}`} alt={props.frontmatter.title} height={100} width={100}/>
     </div>
     <div class="card-content">
         <strong transition:name={`title-${titleId}`}>{props.frontmatter.title}</strong>
-        <div class="description">{props.frontmatter.description}</div>
-        <div class="tags">
+        <div transition:name={`desc-${titleId}`} class="description">{props.frontmatter.description}</div>
+        <div transition:name={`tags-${titleId}`} class="tags">
             {props.frontmatter.tags?.map((tag: string) => (
                 <span class="tag">{tag}</span>
             ))}
@@ -67,39 +69,16 @@ const titleId = props.frontmatter.title?.replace(/[^a-zA-Z0-9]/g, "-").toLowerCa
         margin: 15px 0;
     }
 
-    .tags {
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
-        margin: 10px 0px 20px;
-        font-size: 0.9em;
-    }
-
-    .tag {
-        background-color: #f6f3f1;
-        border: 1px solid #ddd;
-        border-radius: 50px;
-        padding: 4px 12px;
-        font-size: 0.85em;
-        color: #666;
-        transition: 0.7s;
-        font-family: "Inter", sans-serif;
-    }
-
-    .tag:hover {
-        background-color: #ddd;
-        transition: 0.2s;
-    }
-
     @media (max-width: 820px) {
+
         .card {
             flex-direction: column;
             height: auto;
         }
 
         .card-image {
-            flex: 0 0 120px;
-            height: 120px;
+            flex: 0 0 250px;
+            height: 100%;
             width: 100%;
         }
 
