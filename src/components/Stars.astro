@@ -1,0 +1,94 @@
+---
+// adapted from https://github.com/pls-rs/pls/blob/main/docs/src/components/Stars.astro
+import { Icon } from "@astrojs/starlight/components";
+
+const { owner, repo } = Astro.props;
+---
+
+<div class="tag">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download-icon lucide-download"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg>
+  <gh-metric
+    data-type="downloads"
+    data-owner={owner}
+    data-repo={repo}>
+    <span id="download-count">many</span>
+  </gh-metric>
+</div>
+<div class="tag">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star-icon lucide-star"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+  <gh-metric
+    data-type="stars"
+    data-owner={owner}
+    data-repo={repo}>
+    <span id="star-count">many</span>
+  </gh-metric>
+</div>
+
+<style>
+
+  .tag {
+    font-weight: bold;
+  }
+
+  svg {
+		height: 1.2em;
+		vertical-align: -4px;
+	}
+
+</style>
+
+<script>
+  class GhMetric extends HTMLElement {
+    constructor() {
+      super();
+
+      const approximate = (count) => {
+        if (count >= 1000) {
+          const mag = Math.trunc(count / 100) / 10;
+          return `${mag}k+`;
+        } else {
+          const mag = Math.trunc(count / 10) * 10;
+          return `${mag}+`;
+        }
+      };
+
+      const { owner, repo, type } = this.dataset;
+
+      if (!owner || !repo || !type) return;
+
+      const elemId = type === "stars" ? "star-count" : "download-count";
+      const elem = this.querySelector(`#${elemId}`);
+
+      // choose API endpoint and logic
+      const fetchData =
+        type === "stars"
+          ? () =>
+              fetch(`https://api.github.com/repos/${owner}/${repo}`)
+                .then((res) => res.ok && res.json())
+                .then((data) => data?.stargazers_count || 0)
+          : () =>
+              fetch(`https://api.github.com/repos/${owner}/${repo}/releases`)
+                .then((res) => res.ok && res.json())
+                .then(
+                  (data) =>
+                    data?.reduce(
+                      (sum, r) =>
+                        sum +
+                        (r.assets?.reduce(
+                          (acc, a) => acc + (a.download_count || 0),
+                          0
+                        ) || 0),
+                      0
+                    ) || 0
+                );
+
+      fetchData()
+        .then((count) => {
+          if (elem) elem.textContent = approximate(count);
+        })
+        .catch((err) => void err);
+    }
+  }
+
+  customElements.define("gh-metric", GhMetric);
+</script>
