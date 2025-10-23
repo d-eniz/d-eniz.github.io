@@ -1,5 +1,6 @@
 ---
 import { Image } from 'astro:assets';
+import Stars from './Stars.astro';
 
 const props = Astro.props;
 const titleId = props.frontmatter.title?.replace(/[^a-zA-Z0-9]/g, "-").toLowerCase();
@@ -12,7 +13,10 @@ import "../styles/global.css"
         <Image transition:name={`img-${titleId}`} src={`/${props.frontmatter.image}`} alt={props.frontmatter.title} height={100} width={100}/>
     </div>
     <div class="card-content">
-        <strong transition:name={`title-${titleId}`}>{props.frontmatter.title}</strong>
+        <span class="title-line">
+            <strong transition:name={`title-${titleId}`}>{props.frontmatter.title}</strong>
+            {props.frontmatter.repo && <Stars owner="d-eniz" repo={props.frontmatter.repo} />}
+        </span>
         <div transition:name={`desc-${titleId}`} class="description">{props.frontmatter.description}</div>
         <div transition:name={`tags-${titleId}`} class="tags">
             {props.frontmatter.tags?.map((tag: string) => (
@@ -64,6 +68,14 @@ import "../styles/global.css"
         margin: 5px;
         font-size: 1.1em;
     }
+
+    .title-line {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
 
     .description {
         margin: 15px 0;

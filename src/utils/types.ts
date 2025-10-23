@@ -6,6 +6,7 @@ export type Post = {
 		description: string;
 		image: string;
 		link: string;
+		repo: string;
 		tags: string[];
 		apidata: boolean;
 	}
