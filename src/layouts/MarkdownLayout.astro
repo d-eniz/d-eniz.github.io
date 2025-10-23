@@ -73,7 +73,8 @@ import "../styles/global.css"
 		font-size: 1em;
 	}
 
-	.markdown :global(h2) {
+	.markdown :global(h2),
+	.markdown :global(h3) {
 		font-size: 1.6rem;
 		margin-top: 1.25rem;
 		margin-bottom: 0.5rem;
@@ -83,19 +84,16 @@ import "../styles/global.css"
 	.markdown :global(p),
 	.markdown :global(ul),
 	.markdown :global(ol),
-	.markdown :global(li) {
-		font-size: 1.1rem;
+	.markdown :global(li),
+	.markdown :global(strong) {
+		font-size: 1.3rem;
 		line-height: 1.7;
-		margin: 0.8rem 0;
+		margin: 2rem 0;
+		text-align: justify;
 	}
 
 	.markdown :global(li) {
 		margin: 0;
-	}
-
-	.markdown :global(strong) {
-		font-size: 1.1rem;
-		line-height: 1.7;
 	}
 
 	.markdown :global(a) {
