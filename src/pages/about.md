@@ -11,4 +11,4 @@ Currently, I especially enjoy working with **TypeScript**, **React**, and **Pyth
 
 ## Get in touch
 
-To contact me, please send me a message on [LinkedIn](https://www.linkedin.com/in/denizterzioglu/).
+To contact me, please send me a message on [LinkedIn](https://www.linkedin.com/in/denizterzioglu/) or send me an e-mail at [deniz.terzioglu@outlook.com](mailto:deniz.terzioglu@outlook.com).
